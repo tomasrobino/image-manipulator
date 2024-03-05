@@ -1,22 +1,18 @@
 const getPixels = require("get-pixels");
 
-const pixelArray = [];
-getPixels("img2.jpg", (error, pixels) => {
+
+getPixels("img.jpg", (error, pixels) => {
     if (error) {
         console.log("Image not found");
         return
     }
+    const pixelArray = new Uint8Array(pixels.data.length/pixels.shape[2]);
     //pixels.shape = [width, height, channels]
     for (let i = 0; i < pixels.data.length; i+=pixels.shape[2]) {
-        let arr = [];
-        for (let k = 0; k < pixels.shape[0]; k++) {
-            let aux = [];
-            for (let t = 0; t < pixels.shape[2]; t++) {
-                aux.push(pixels.data[i+t]);
-            }
-            arr.push(aux);
+        let sum = 0;
+        for (let t = 0; t < 3; t++) {
+            sum+=pixels.data[i+t];
         }
-        pixelArray.push(arr);
+        pixelArray[i/4] = sum/3;
     }
-    console.log(pixelArray)
 })
