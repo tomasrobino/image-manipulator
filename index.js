@@ -15,16 +15,20 @@ getPixels("img.jpg", (error, pixels) => {
         }
         pixelArray[i/4] = sum/3;
     }
-
+    
     let sum = "";
     for (let i = 0; i < pixelArray.length; i++) {
-        if (pixelArray[i]<51) {
+        if (pixelArray[i]<36) {
             sum+=" ";
-        } else if (pixelArray[i]<102) {
+        } else if (pixelArray[i]<72) {
+            sum+="·";
+        } else if (pixelArray[i]<108) {
+            sum+=":";
+        } else if (pixelArray[i]<144) {
             sum+="░";
-        } else if (pixelArray[i]<153) {
+        } else if (pixelArray[i]<180) {
             sum+="▒";
-        } else if (pixelArray[i]<204) {
+        } else if (pixelArray[i]<216) {
             sum+="▓";
         } else sum+="█";
         
