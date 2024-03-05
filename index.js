@@ -15,4 +15,18 @@ getPixels("img.jpg", (error, pixels) => {
         }
         pixelArray[i/4] = sum/3;
     }
+
+    let sum = "";
+    for (let i = 0; i < pixelArray.length; i++) {
+        if (pixelArray[i]<85) {
+            sum+="░";
+        } else if (pixelArray[i]<170) {
+            sum+="▒";
+        } else sum+="▓";
+        
+        if ((i+1)%pixels.shape[0]===0) {
+            console.log(sum);
+            sum = "";
+        }
+    }
 })
