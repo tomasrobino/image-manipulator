@@ -1,7 +1,7 @@
 const getPixels = require("get-pixels");
 
 
-getPixels("img.jpg", (error, pixels) => {
+getPixels("img3.jpg", (error, pixels) => {
     if (error) {
         console.log("Image not found");
         return
@@ -13,9 +13,9 @@ getPixels("img.jpg", (error, pixels) => {
         for (let t = 0; t < 3; t++) {
             sum+=pixels.data[i+t];
         }
-        pixelArray[i/4] = sum/3;
+        pixelArray[i/4] = (sum/3)*(pixels.data[i+3]/255);
     }
-    
+
     let sum = "";
     for (let i = 0; i < pixelArray.length; i++) {
         if (pixelArray[i]<36) {
